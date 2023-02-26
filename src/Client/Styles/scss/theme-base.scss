@@ -1,0 +1,39 @@
+
+body {
+    // Colors
+    --primary: #2d3034;
+    --primary-contrast: #5d737e;
+    --secondary: #dbfff0;
+    --ternary: #bffdfb;
+    --accent: #ffc64d;
+
+    --action: #fff2c7;
+    --action-contrast: #664e00;
+    
+    --fg-color: #fff;
+    --fg-color-contrast: #333;
+
+    --bg-color-success: #53c71a;
+    --bg-color-success-hover: #eaffd1;
+    --bg-color-info: #1a90ff;
+    --bg-color-info-hover: #95E1D3;
+    --bg-color-warning: #faae14;
+    --bg-color-warning-hover: #fce38a;
+    --bg-color-error: #ff4d4f;
+    --bg-color-error-hover: #f38181;
+
+    // Layout
+    --margin-block-start: 0;
+    --margin-block-end: 1rem;
+    --margin-inline-start: 0;
+    --margin-inline-end: 0;
+    --padding-block-start: 0.5rem;
+    --padding-block-end: 0.5rem;
+    --padding-inline-start: 0.75rem;
+    --padding-inline-end: 0.75rem;
+
+    // Miscelaneous
+    --font-family: "GoodTimes",
+    --font-size: 18px;
+    --line-height: 1.4;
+}
