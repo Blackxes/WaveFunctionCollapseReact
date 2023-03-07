@@ -6,19 +6,19 @@
  */
 
 export function* makeApiRequest(route: string, options = {}) {
-    let response = null;
+  let response = null;
 
-    try {
-        const rawReponse = yield fetch(process?.env?.BASE_URL + route, options);
-        response = yield rawReponse.json();
-    } catch (error) {
-        return {
-            value: response,
-            url: process?.env?.BASE_URL + route,
-            error: ["Request failed", error],
-            status: 500,
-        };
-    }
+  // try {
+  //     const rawReponse = yield fetch(process?.env?.BASE_URL + route, options);
+  //     response = yield rawReponse.json();
+  // } catch (error) {
+  //     return {
+  //         value: response,
+  //         url: process?.env?.BASE_URL + route,
+  //         error: ["Request failed", error],
+  //         status: 500,
+  //     };
+  // }
 
-    return response;
+  return response;
 }

@@ -8,14 +8,14 @@
 // @todo fix all typescript errors
 
 export const getFormData = (formElement) => {
-    const formData = new FormData(formElement);
-    let data = {};
+  const formData = new FormData(formElement);
+  let data = {};
 
-    for (const item of formData.entries()) {
-        data[item[0]] = item[1];
-    }
+  for (const item of formData.entries()) {
+    data[item[0]] = item[1];
+  }
 
-    return data;
+  return data;
 };
 
 /**
@@ -27,14 +27,14 @@ export const getHandledActionType = (type) => type + "/handled";
 /**
  * Returns an application title combined with the given value
  */
-export const getDocumentTitle = (title = "") =>
-    [process?.env?.APP_TITLE || "", title].filter(Boolean).join(" | ");
+// export const getDocumentTitle = (title = "") =>
+//     [process?.env?.APP_TITLE || "", title].filter(Boolean).join(" | ");
 
 export const handleApiResponseObjects = (callbackForSingleObject, data) =>
-    data?.map((item) => callbackForSingleObject(item));
+  data?.map((item) => callbackForSingleObject(item));
 
 export const createBlankDataSet = (type, defaults = {}) => ({
-    ...defaults,
+  ...defaults,
 });
 
 /**
@@ -48,15 +48,15 @@ export const createBlankDataSet = (type, defaults = {}) => ({
  * @return string - the generated hash
  */
 const g_defaultHashChars =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
 
 export const generateHashString = (length = 8, chars = g_defaultHashChars) => {
-    let hash = "";
+  let hash = "";
 
-    while (length > hash.length)
-        hash += chars.charAt(Math.floor(Math.random() * chars.length));
+  while (length > hash.length)
+    hash += chars.charAt(Math.floor(Math.random() * chars.length));
 
-    return hash;
+  return hash;
 };
 
 /**
@@ -71,29 +71,29 @@ export const generateHashString = (length = 8, chars = g_defaultHashChars) => {
 const g_defaultSections = [16];
 
 export const generateId = (sections = g_defaultSections) => {
-    return sections
-        .map((length) => {
-            return generateHashString(length);
-        })
-        .join("-");
+  return sections
+    .map((length) => {
+      return generateHashString(length);
+    })
+    .join("-");
 };
 
 /**
  * Generates a random color hash
  */
 export const randomColor = () =>
-    "#" + Math.floor(Math.random() * 16777215).toString(16);
+  "#" + Math.floor(Math.random() * 16777215).toString(16);
 
 /**
  * Returns a promise after its resolve a response object is returned
  * @see https://picsum.photos/
  */
 export const getRandomImage = (width, height) => {
-    // I split the code here because of clarity
-    const url = `https://picsum.photos/${width}/${height ?? width}`;
-    const paramsString = `random=${Math.floor(Math.random() * 25)}`;
+  // I split the code here because of clarity
+  const url = `https://picsum.photos/${width}/${height ?? width}`;
+  const paramsString = `random=${Math.floor(Math.random() * 25)}`;
 
-    return fetch(url + "?" + paramsString);
+  return fetch(url + "?" + paramsString);
 };
 
 /**
@@ -117,12 +117,12 @@ export const getRandomImage = (width, height) => {
  * 	- joined string
  */
 export const joinStrings = (strings, separator = " ") => {
-    if (!strings || strings.constructor != Array) {
-        return "";
-    }
+  if (!strings || strings.constructor != Array) {
+    return "";
+  }
 
-    // prettier-ignore
-    return strings
+  // prettier-ignore
+  return strings
 		  .map((item) => {
 			  return !item
 				  ? false
@@ -147,95 +147,95 @@ export const joinStrings = (strings, separator = " ") => {
  * @return keyified string
  */
 export const keyifyString = (string, useDash = true) => {
-    if (typeof string != "string") {
-        return "";
-    }
+  if (typeof string != "string") {
+    return "";
+  }
 
-    let keyified = string.toLowerCase();
-    let whiteSpaceReplacement = useDash ? "-" : "_";
+  let keyified = string.toLowerCase();
+  let whiteSpaceReplacement = useDash ? "-" : "_";
 
-    return keyified.replace(/[-_]|\s+/g, whiteSpaceReplacement);
+  return keyified.replace(/[-_]|\s+/g, whiteSpaceReplacement);
 };
 
 /**
  * Falls back on an empty string if false
  */
 export const stringFallback = (condition: boolean, returnValue: any) =>
-    condition ? returnValue : "";
+  condition ? returnValue : "";
 
 /**
  * Converts an underscore string to camelcase
  */
 export const underscoreToCamelCase = (string) => {
-    return [...string].reduce(
-        (camelCased, char, index) =>
-            (camelCased +=
-                char == "_"
-                    ? ""
-                    : string.at(index - 1) == "_"
-                    ? char.toUpperCase()
-                    : char),
-        ""
-    );
+  return [...string].reduce(
+    (camelCased, char, index) =>
+      (camelCased +=
+        char == "_"
+          ? ""
+          : string.at(index - 1) == "_"
+          ? char.toUpperCase()
+          : char),
+    ""
+  );
 };
 
 /**
  * Inserts a new item into a scope inside an object
  */
 export const insertScopedItemInObject = (state, scope, item) => ({
-    ...state,
-    [scope]: [...state[scope], item],
+  ...state,
+  [scope]: [...state[scope], item],
 });
 
 /**
  * Overrides an item inside a scope of an object
  */
 export const setScopedItemInObject = (
-    state,
-    scope,
-    key,
-    keyValue,
-    newItem
+  state,
+  scope,
+  key,
+  keyValue,
+  newItem
 ) => ({
-    ...state,
-    [scope]: state.map((item) => (item[key] == keyValue ? newItem : item)),
+  ...state,
+  [scope]: state.map((item) => (item[key] == keyValue ? newItem : item)),
 });
 
 /**
  * Updates an item in the state
  */
 export const updateScopedItemInObject = (
-    state,
-    scope,
-    key,
-    keyValue,
-    values
+  state,
+  scope,
+  key,
+  keyValue,
+  values
 ) => ({
-    ...state,
-    [scope]: state.map((item) =>
-        item[key] == keyValue ? { ...item, ...values } : item
-    ),
+  ...state,
+  [scope]: state.map((item) =>
+    item[key] == keyValue ? { ...item, ...values } : item
+  ),
 });
 
 /**
  * Deletes an item inside a scope of an object
  */
 export const deleteScopedItemFromObject = (state, scope, key, keyValue) => ({
-    ...state,
-    [scope]: state.filter((item) => item[key] == keyValue),
+  ...state,
+  [scope]: state.filter((item) => item[key] == keyValue),
 });
 
 /**
  * Returns an item from a scope in an object
  */
 export const getScopedItemFromObject = (state, scope, key, keyValue) =>
-    getObjectItemFromArray(state[scope], key, keyValue);
+  getObjectItemFromArray(state[scope], key, keyValue);
 
 /**
  * Shorthand for the find object by key in array function
  */
 export const getObjectItemFromArray = (array, key, keyValue) =>
-    array.find((item) => item[key] == keyValue);
+  array.find((item) => item[key] == keyValue);
 
 /**
  * Returns a function which debounces a function call
@@ -245,44 +245,41 @@ export const getObjectItemFromArray = (array, key, keyValue) =>
  * @param {int} throttle_ms Duration of the throttle in milliseconds
  */
 export const debounced = (callback, ms = 1000) => {
-    let timeoutId = 0;
+  let timeoutId = 0;
 
-    return (...args: any[]) => {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(
-            () => callback(...args),
-            ms
-        ) as unknown as number;
-    };
+  return (...args: any[]) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback(...args), ms) as unknown as number;
+  };
 };
 
 /**
  * filters an array by key
  */
 export function filterByProperty<R>(
-    array: R[],
-    value: any,
-    key: string = "key"
+  array: R[],
+  value: any,
+  key: string = "key"
 ): R[] {
-    return array.filter((item) => item[key as keyof typeof item] == value);
+  return array.filter((item) => item[key as keyof typeof item] == value);
 }
 // export const filterByKey = (array: object[], key: string, value: any): typeof array =>
 //     array.filter((item) => item[key] == value);
 
 export function findByProperty<R>(
-    array: R[],
-    value: any,
-    key: string = "key"
+  array: R[],
+  value: any,
+  key: string = "key"
 ): R {
-    return array.find((item) => item[key as keyof typeof item] == value);
+  return array.find((item) => item[key as keyof typeof item] == value);
 }
 
 /**
  * Stringifies an objects values
  */
 export function stringifyObject<T extends object>(obj: T) {
-    return Object.keys(obj).reduce(
-        (newObj, key) => (newObj[key] = JSON.stringify(obj[key])),
-        {}
-    );
+  return Object.keys(obj).reduce(
+    (newObj, key) => (newObj[key] = JSON.stringify(obj[key])),
+    {}
+  );
 }

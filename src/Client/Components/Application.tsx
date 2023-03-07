@@ -17,36 +17,36 @@ import WaveFunctionCollapse from "./WaveFunctionCollapse";
 interface ApplicationProps {}
 
 export const Application: React.FunctionComponent<ApplicationProps> = () => {
-    const gridSettings: IGridSettings = {
-        ...DefaultGridSettings,
-    };
+  const gridSettings: IGridSettings = {
+    ...DefaultGridSettings,
+  };
 
-    const onWaveFunctionCollapseStep = () => {
-        console.log("Step Wave function collapse");
-    };
+  const onWaveFunctionCollapseStep = () => {
+    console.log("Step Wave function collapse");
+  };
 
-    return (
-        <SApplication>
-            <GlobalStyles />
-            <SStepButton onClick={onWaveFunctionCollapseStep}>
-                Step sister (I'm stuck)
-            </SStepButton>
-            <WaveFunctionCollapse gridSettings={gridSettings} />
-        </SApplication>
-    );
+  return (
+    <SApplication>
+      <GlobalStyles />
+      <SStepButton onClick={onWaveFunctionCollapseStep}>
+        Step sister (I'm stuck)
+      </SStepButton>
+      <WaveFunctionCollapse gridSettings={gridSettings} />
+    </SApplication>
+  );
 };
 
 const SApplication = styled(Flex)`
-    margin: 0 auto;
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+  margin: 0 auto;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 `;
 
 const SStepButton = styled.button`
-    width: fit-content;
-    background: orange;
+  width: fit-content;
+  background: orange;
 `;
